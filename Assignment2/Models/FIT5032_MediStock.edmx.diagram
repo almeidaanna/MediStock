@@ -22,12 +22,8 @@
         </AssociationConnector>
         <InheritanceConnector EntityType="FIT5032_MediStock.EquipmentList" />
         <AssociationConnector Association="FIT5032_MediStock.AdminLogistic" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.EquipmentBooking" Width="2.125" PointX="10.125" PointY="4.25" />
-        <AssociationConnector Association="FIT5032_MediStock.EquipmentBookingDoctor" ManuallyRouted="true" >
-          <ConnectorPoint PointX="10.125" PointY="5.6964651719414512" />
-          <ConnectorPoint PointX="9.33333022943709" PointY="5.6896321091325746" />
-          <ConnectorPoint PointX="9.16666977056291" PointY="5.68819362881466" />
-          <ConnectorPoint PointX="4" PointY="5.64359905116662" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.EquipmentBooking" Width="2.125" PointX="10.125" PointY="4" />
+        <AssociationConnector Association="FIT5032_MediStock.EquipmentBookingDoctor" ManuallyRouted="false" >
         </AssociationConnector>
         <AssociationConnector Association="FIT5032_MediStock.LogisticEquipmentBooking" ManuallyRouted="false" >
         </AssociationConnector>
