@@ -184,23 +184,77 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminsController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
+    <Compile Include="Controllers\DrugBookingsController.cs" />
+    <Compile Include="Controllers\DrugListsController.cs" />
+    <Compile Include="Controllers\DrugsController.cs" />
+    <Compile Include="Controllers\EquipmentBookingsController.cs" />
+    <Compile Include="Controllers\EquipmentListsController.cs" />
+    <Compile Include="Controllers\EquipmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogisticsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PharmacistsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Doctor.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Drug.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DrugBooking.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DrugList.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Equipment.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EquipmentBooking.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EquipmentList.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FIT5032_MediStock.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIT5032_MediStock.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FIT5032_MediStock.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\FIT5032_MediStock.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>FIT5032_MediStock.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Logistic.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Pharmacist.cs">
+      <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MediStock_db.mdf" />
+    <Content Include="App_Data\MediStock_db_log.ldf">
+      <DependentUpon>MediStock_db.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -209,6 +263,17 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\FIT5032_MediStock.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FIT5032_MediStock.Context.cs</LastGenOutput>
+      <DependentUpon>FIT5032_MediStock.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\FIT5032_MediStock.edmx.sql" />
+    <Content Include="Models\FIT5032_MediStock.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FIT5032_MediStock.cs</LastGenOutput>
+      <DependentUpon>FIT5032_MediStock.edmx</DependentUpon>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Models\FIT5032_MediStock.edmx">
@@ -263,9 +328,59 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Admins\Create.cshtml" />
+    <Content Include="Views\Admins\Delete.cshtml" />
+    <Content Include="Views\Admins\Details.cshtml" />
+    <Content Include="Views\Admins\Edit.cshtml" />
+    <Content Include="Views\Admins\Index.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\Equipments\Create.cshtml" />
+    <Content Include="Views\Equipments\Delete.cshtml" />
+    <Content Include="Views\Equipments\Details.cshtml" />
+    <Content Include="Views\Equipments\Edit.cshtml" />
+    <Content Include="Views\Equipments\Index.cshtml" />
+    <Content Include="Views\Logistics\Create.cshtml" />
+    <Content Include="Views\Logistics\Delete.cshtml" />
+    <Content Include="Views\Logistics\Details.cshtml" />
+    <Content Include="Views\Logistics\Edit.cshtml" />
+    <Content Include="Views\Logistics\Index.cshtml" />
+    <Content Include="Views\Pharmacists\Create.cshtml" />
+    <Content Include="Views\Pharmacists\Delete.cshtml" />
+    <Content Include="Views\Pharmacists\Details.cshtml" />
+    <Content Include="Views\Pharmacists\Edit.cshtml" />
+    <Content Include="Views\Pharmacists\Index.cshtml" />
+    <Content Include="Views\Drugs\Create.cshtml" />
+    <Content Include="Views\Drugs\Delete.cshtml" />
+    <Content Include="Views\Drugs\Details.cshtml" />
+    <Content Include="Views\Drugs\Edit.cshtml" />
+    <Content Include="Views\Drugs\Index.cshtml" />
+    <Content Include="Views\DrugLists\Create.cshtml" />
+    <Content Include="Views\DrugLists\Delete.cshtml" />
+    <Content Include="Views\DrugLists\Details.cshtml" />
+    <Content Include="Views\DrugLists\Edit.cshtml" />
+    <Content Include="Views\DrugLists\Index.cshtml" />
+    <Content Include="Views\EquipmentLists\Create.cshtml" />
+    <Content Include="Views\EquipmentLists\Delete.cshtml" />
+    <Content Include="Views\EquipmentLists\Details.cshtml" />
+    <Content Include="Views\EquipmentLists\Edit.cshtml" />
+    <Content Include="Views\EquipmentLists\Index.cshtml" />
+    <Content Include="Views\DrugBookings\Create.cshtml" />
+    <Content Include="Views\DrugBookings\Delete.cshtml" />
+    <Content Include="Views\DrugBookings\Details.cshtml" />
+    <Content Include="Views\DrugBookings\Edit.cshtml" />
+    <Content Include="Views\DrugBookings\Index.cshtml" />
+    <Content Include="Views\EquipmentBookings\Create.cshtml" />
+    <Content Include="Views\EquipmentBookings\Delete.cshtml" />
+    <Content Include="Views\EquipmentBookings\Details.cshtml" />
+    <Content Include="Views\EquipmentBookings\Edit.cshtml" />
+    <Content Include="Views\EquipmentBookings\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
