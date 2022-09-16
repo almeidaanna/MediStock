@@ -26,5 +26,11 @@ namespace Assignment2.Controllers
 
             return View();
         }
+
+        public ActionResult HomePage()
+        {
+            ViewBag.Message = "Medistock Home Page";
+            return View();
+        }
     }
 }

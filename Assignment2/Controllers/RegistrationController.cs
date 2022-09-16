@@ -54,11 +54,12 @@ namespace Assignment2.Controllers
                 ViewBag.MedicalRegistration = MedicalRegistration;
                 ViewBag.FacilityName = FacilityName;
                 ViewBag.Location = Location;
-                return View();
+                //return View();
+                return RedirectToAction("HomePage", "HomeController");
             }
             catch
             {
-                return View();
+                return RedirectToAction("HomePage", "HomeController");
             }
         }
 
