@@ -24,7 +24,7 @@ namespace Assignment2.Controllers
         // GET: Registration/Create
         public ActionResult Create()
         {
-            return View();
+            return RedirectToAction("HomePage");
         }
 
         // POST: Registration/Create
@@ -54,12 +54,13 @@ namespace Assignment2.Controllers
                 ViewBag.MedicalRegistration = MedicalRegistration;
                 ViewBag.FacilityName = FacilityName;
                 ViewBag.Location = Location;
-                //return View();
-                return RedirectToAction("HomePage", "HomeController");
+                return View();
+                //return RedirectToAction("HomePage", "HomeController");
             }
             catch
             {
-                return RedirectToAction("HomePage", "HomeController");
+                return View();
+                //return RedirectToAction("HomePage", "HomeController");
             }
         }
 

@@ -11,29 +11,30 @@ namespace Assignment2.Models
     }
     public class FormOneViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "First Name can not be empty")]
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
 
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email can not be empty")]
         [DataType(DataType.EmailAddress)]
         [Display(Name = "Email ID")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Email can not be empty")]
         [DataType(DataType.PhoneNumber)]
+        [StringLength(10)]
         [Display(Name = "Phone Number")]
         public string Phone { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Password can not be empty")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Must match password")]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm Password")]
         public string ConfirmPassword { get; set; }
