@@ -4,25 +4,48 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="73930f87b3eb470c87171c0eca285220" Name="Diagram1" ZoomLevel="72" >
-        <EntityTypeShape EntityType="FIT5032_MediStock.Pharmacist" Width="1.5" PointX="0.5" PointY="0.5" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Doctor" Width="1.5" PointX="2.5" PointY="0.5" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Admin" Width="1.5" PointX="5.25" PointY="0.5" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Logistic" Width="1.5" PointX="7.625" PointY="0.625" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Drug" Width="1.5" PointX="0.5" PointY="7.25" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Equipment" Width="1.5" PointX="4.875" PointY="4.75" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Booking" Width="1.5" PointX="9.875" PointY="4.25" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.Email" Width="1.5" PointX="6.75" PointY="4.75" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.DrugList" Width="1.5" PointX="0.5" PointY="4.5" />
-        <EntityTypeShape EntityType="FIT5032_MediStock.EquipmentList" Width="1.5" PointX="2.5" PointY="4.625" />
+      <Diagram DiagramId="73930f87b3eb470c87171c0eca285220" Name="Diagram1" ZoomLevel="70" >
+        <EntityTypeShape EntityType="FIT5032_MediStock.Pharmacist" Width="1.5" PointX="0.5" PointY="3.625" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.Doctor" Width="1.75" PointX="2.25" PointY="3.625" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.Admin" Width="1.5" PointX="1.5" PointY="0.5" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.Logistic" Width="1.875" PointX="6.125" PointY="0.5" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.Drug" Width="1.5" PointX="4.625" PointY="6.5" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.Equipment" Width="1.5" PointX="7" PointY="3.625" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.DrugBooking" Width="1.75" PointX="7.125" PointY="5.875" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.DrugList" Width="1.5" PointX="1.25" PointY="7.625" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.EquipmentList" Width="1.625" PointX="4.75" PointY="3.375" />
         <AssociationConnector Association="FIT5032_MediStock.DrugDrugList" />
         <AssociationConnector Association="FIT5032_MediStock.EquipmentEquipmentList" />
-        <AssociationConnector Association="FIT5032_MediStock.PharmacistDrugList" />
-        <AssociationConnector Association="FIT5032_MediStock.DoctorEquipmentList" />
-        <AssociationConnector Association="FIT5032_MediStock.DoctorDrugList" />
         <AssociationConnector Association="FIT5032_MediStock.AdminDoctor" />
-        <AssociationConnector Association="FIT5032_MediStock.PharmacistAdmin" ></AssociationConnector>
+        <AssociationConnector Association="FIT5032_MediStock.PharmacistAdmin"></AssociationConnector>
+        <AssociationConnector Association="FIT5032_MediStock.LogisticBooking" ManuallyRouted="false" >
+        </AssociationConnector>
+        <InheritanceConnector EntityType="FIT5032_MediStock.EquipmentList" />
+        <AssociationConnector Association="FIT5032_MediStock.PharmacistDrugList" />
+        <AssociationConnector Association="FIT5032_MediStock.DoctorDrugList" ></AssociationConnector>
         <AssociationConnector Association="FIT5032_MediStock.AdminLogistic" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.EquipmentBooking" Width="2.125" PointX="10.125" PointY="4.25" />
+        <AssociationConnector Association="FIT5032_MediStock.EquipmentBookingDoctor" ManuallyRouted="true" >
+          <ConnectorPoint PointX="10.125" PointY="5.6964651719414512" />
+          <ConnectorPoint PointX="9.3333333333333339" PointY="5.69646517194145" />
+          <ConnectorPoint PointX="9.1666666666666661" PointY="5.6964651719414512" />
+          <ConnectorPoint PointX="8.75" PointY="5.6964651719414512" />
+          <ConnectorPoint PointX="8.75" PointY="5.7022194197813878" />
+          <ConnectorPoint PointX="4" PointY="5.7022194197813878" />
+        </AssociationConnector>
+        <AssociationConnector Association="FIT5032_MediStock.LogisticEquipmentBooking" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="FIT5032_MediStock.DoctorDrugBooking" />
+        <AssociationConnector Association="FIT5032_MediStock.PharmacistDrugBooking" ManuallyRouted="true" >
+          <ConnectorPoint PointX="0.84299324525749442" PointY="6.951396484375" />
+          <ConnectorPoint PointX="0.84299324525749442" PointY="10.088103022372895" />
+          <ConnectorPoint PointX="7.5369595711329724" PointY="10.088103022372895" />
+          <ConnectorPoint PointX="7.5369595711329724" PointY="9.5859993489583317" />
+        </AssociationConnector>
+        <AssociationConnector Association="FIT5032_MediStock.DoctorEquipmentList" />
+        <AssociationConnector Association="FIT5032_MediStock.DrugListDrugBooking" />
+        <AssociationConnector Association="FIT5032_MediStock.EquipmentListEquipmentBooking" ManuallyRouted="false" >
+        </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

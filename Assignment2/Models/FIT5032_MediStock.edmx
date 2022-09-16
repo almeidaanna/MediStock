@@ -15,14 +15,11 @@
         <EntityContainer Name="FIT5032_MediStockContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Drugs" EntityType="FIT5032_MediStock.Drug" />
           <EntitySet Name="Equipments" EntityType="FIT5032_MediStock.Equipment" />
-          <EntitySet Name="Bookings" EntityType="FIT5032_MediStock.Booking" />
-          <EntitySet Name="Emails" EntityType="FIT5032_MediStock.Email" />
+          <EntitySet Name="DrugBookings" EntityType="FIT5032_MediStock.DrugBooking" />
           <EntitySet Name="Pharmacists" EntityType="FIT5032_MediStock.Pharmacist" />
           <EntitySet Name="Doctors" EntityType="FIT5032_MediStock.Doctor" />
           <EntitySet Name="Admins" EntityType="FIT5032_MediStock.Admin" />
           <EntitySet Name="Logistics" EntityType="FIT5032_MediStock.Logistic" />
-          <EntitySet Name="DrugLists" EntityType="FIT5032_MediStock.DrugList" />
-          <EntitySet Name="EquipmentLists" EntityType="FIT5032_MediStock.EquipmentList" />
           <AssociationSet Name="DrugDrugList" Association="FIT5032_MediStock.DrugDrugList">
             <End Role="Drug" EntitySet="Drugs" />
             <End Role="DrugList" EntitySet="DrugLists" />
@@ -30,18 +27,6 @@
           <AssociationSet Name="EquipmentEquipmentList" Association="FIT5032_MediStock.EquipmentEquipmentList">
             <End Role="Equipment" EntitySet="Equipments" />
             <End Role="EquipmentList" EntitySet="EquipmentLists" />
-          </AssociationSet>
-          <AssociationSet Name="PharmacistDrugList" Association="FIT5032_MediStock.PharmacistDrugList">
-            <End Role="Pharmacist" EntitySet="Pharmacists" />
-            <End Role="DrugList" EntitySet="DrugLists" />
-          </AssociationSet>
-          <AssociationSet Name="DoctorEquipmentList" Association="FIT5032_MediStock.DoctorEquipmentList">
-            <End Role="Doctor" EntitySet="Doctors" />
-            <End Role="EquipmentList" EntitySet="EquipmentLists" />
-          </AssociationSet>
-          <AssociationSet Name="DoctorDrugList" Association="FIT5032_MediStock.DoctorDrugList">
-            <End Role="Doctor" EntitySet="Doctors" />
-            <End Role="DrugList" EntitySet="DrugLists" />
           </AssociationSet>
           <AssociationSet Name="AdminDoctor" Association="FIT5032_MediStock.AdminDoctor">
             <End Role="Admin" EntitySet="Admins" />
@@ -51,12 +36,58 @@
             <End Role="Pharmacist" EntitySet="Pharmacists" />
             <End Role="Admin" EntitySet="Admins" />
           </AssociationSet>
+          <AssociationSet Name="LogisticBooking" Association="FIT5032_MediStock.LogisticBooking">
+            <End Role="Logistic" EntitySet="Logistics" />
+            <End Role="Booking" EntitySet="DrugBookings" />
+          </AssociationSet>
+          <AssociationSet Name="PharmacistDrugList" Association="FIT5032_MediStock.PharmacistDrugList">
+            <End EntitySet="Pharmacists" Role="Pharmacist" />
+            <End EntitySet="DrugLists" Role="DrugList" />
+          </AssociationSet>
+          <AssociationSet Name="DoctorDrugList" Association="FIT5032_MediStock.DoctorDrugList">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="DrugList" EntitySet="DrugLists" />
+          </AssociationSet>
+          <EntitySet Name="DrugLists" EntityType="FIT5032_MediStock.DrugList" />
+          <EntitySet Name="EquipmentLists" EntityType="FIT5032_MediStock.EquipmentList" />
           <AssociationSet Name="AdminLogistic" Association="FIT5032_MediStock.AdminLogistic">
             <End Role="Admin" EntitySet="Admins" />
             <End Role="Logistic" EntitySet="Logistics" />
           </AssociationSet>
+          <EntitySet Name="EquipmentBookings" EntityType="FIT5032_MediStock.EquipmentBooking" />
+          <AssociationSet Name="EquipmentBookingDoctor" Association="FIT5032_MediStock.EquipmentBookingDoctor">
+            <End Role="EquipmentBooking" EntitySet="EquipmentBookings" />
+            <End Role="Doctor" EntitySet="Doctors" />
+          </AssociationSet>
+          <AssociationSet Name="LogisticEquipmentBooking" Association="FIT5032_MediStock.LogisticEquipmentBooking">
+            <End Role="Logistic" EntitySet="Logistics" />
+            <End Role="EquipmentBooking" EntitySet="EquipmentBookings" />
+          </AssociationSet>
+          <AssociationSet Name="DoctorDrugBooking" Association="FIT5032_MediStock.DoctorDrugBooking">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="DrugBooking" EntitySet="DrugBookings" />
+          </AssociationSet>
+          <AssociationSet Name="PharmacistDrugBooking" Association="FIT5032_MediStock.PharmacistDrugBooking">
+            <End Role="Pharmacist" EntitySet="Pharmacists" />
+            <End Role="DrugBooking" EntitySet="DrugBookings" />
+          </AssociationSet>
+          <AssociationSet Name="DoctorEquipmentList" Association="FIT5032_MediStock.DoctorEquipmentList">
+            <End Role="Doctor" EntitySet="Doctors" />
+            <End Role="EquipmentList" EntitySet="EquipmentLists" />
+          </AssociationSet>
+          <AssociationSet Name="DrugListDrugBooking" Association="FIT5032_MediStock.DrugListDrugBooking">
+            <End Role="DrugList" EntitySet="DrugLists" />
+            <End Role="DrugBooking" EntitySet="DrugBookings" />
+          </AssociationSet>
+          <AssociationSet Name="EquipmentListEquipmentBooking" Association="FIT5032_MediStock.EquipmentListEquipmentBooking">
+            <End Role="EquipmentList" EntitySet="EquipmentLists" />
+            <End Role="EquipmentBooking" EntitySet="EquipmentBookings" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Pharmacist">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="first_name" Type="String" Nullable="false" />
           <Property Name="last_name" Type="String" Nullable="false" />
@@ -66,11 +97,14 @@
           <Property Name="email_address" Type="String" Nullable="false" />
           <Property Name="medical_reg" Type="String" Nullable="false" />
           <Property Name="password" Type="String" Nullable="false" />
-          <Property Name="drug_list_id" Type="String" Nullable="false" />
-          <NavigationProperty Name="DrugLists" Relationship="FIT5032_MediStock.PharmacistDrugList" FromRole="Pharmacist" ToRole="DrugList" />
           <NavigationProperty Name="Admins" Relationship="FIT5032_MediStock.PharmacistAdmin" FromRole="Pharmacist" ToRole="Admin" />
+          <NavigationProperty Name="DrugLists" Relationship="FIT5032_MediStock.PharmacistDrugList" FromRole="Pharmacist" ToRole="DrugList" />
+          <NavigationProperty Name="DrugBookings" Relationship="FIT5032_MediStock.PharmacistDrugBooking" FromRole="Pharmacist" ToRole="DrugBooking" />
         </EntityType>
         <EntityType Name="Doctor">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="first_name" Type="String" Nullable="false" />
           <Property Name="last_name" Type="String" Nullable="false" />
@@ -80,13 +114,16 @@
           <Property Name="email_address" Type="String" Nullable="false" />
           <Property Name="medical_reg" Type="String" Nullable="false" />
           <Property Name="password" Type="String" Nullable="false" />
-          <Property Name="drug_list_id" Type="String" Nullable="false" />
-          <Property Name="equipment_list_id" Type="String" Nullable="false" />
-          <NavigationProperty Name="EquipmentLists" Relationship="FIT5032_MediStock.DoctorEquipmentList" FromRole="Doctor" ToRole="EquipmentList" />
-          <NavigationProperty Name="DrugLists" Relationship="FIT5032_MediStock.DoctorDrugList" FromRole="Doctor" ToRole="DrugList" />
           <NavigationProperty Name="Admin" Relationship="FIT5032_MediStock.AdminDoctor" FromRole="Doctor" ToRole="Admin" />
+          <NavigationProperty Name="DrugLists" Relationship="FIT5032_MediStock.DoctorDrugList" FromRole="Doctor" ToRole="DrugList" />
+          <NavigationProperty Name="EquipmentBookings" Relationship="FIT5032_MediStock.EquipmentBookingDoctor" FromRole="Doctor" ToRole="EquipmentBooking" />
+          <NavigationProperty Name="DrugBookings" Relationship="FIT5032_MediStock.DoctorDrugBooking" FromRole="Doctor" ToRole="DrugBooking" />
+          <NavigationProperty Name="EquipmentLists" Relationship="FIT5032_MediStock.DoctorEquipmentList" FromRole="Doctor" ToRole="EquipmentList" />
         </EntityType>
         <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="first_name" Type="String" Nullable="false" />
           <Property Name="last_name" Type="String" Nullable="false" />
@@ -98,13 +135,18 @@
           <NavigationProperty Name="Logistics" Relationship="FIT5032_MediStock.AdminLogistic" FromRole="Admin" ToRole="Logistic" />
         </EntityType>
         <EntityType Name="Logistic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="first_name" Type="String" Nullable="false" />
           <Property Name="last_name" Type="String" Nullable="false" />
           <Property Name="phone_no" Type="String" Nullable="false" />
           <Property Name="email_id" Type="String" Nullable="false" />
           <Property Name="password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Bookings" Relationship="FIT5032_MediStock.LogisticBooking" FromRole="Logistic" ToRole="Booking" />
           <NavigationProperty Name="Admin" Relationship="FIT5032_MediStock.AdminLogistic" FromRole="Logistic" ToRole="Admin" />
+          <NavigationProperty Name="EquipmentBookings" Relationship="FIT5032_MediStock.LogisticEquipmentBooking" FromRole="Logistic" ToRole="EquipmentBooking" />
         </EntityType>
         <EntityType Name="Drug">
           <Key>
@@ -128,51 +170,49 @@
           <Property Name="warning" Type="String" Nullable="false" />
           <NavigationProperty Name="EquipmentLists" Relationship="FIT5032_MediStock.EquipmentEquipmentList" FromRole="Equipment" ToRole="EquipmentList" />
         </EntityType>
-        <EntityType Name="Booking">
+        <EntityType Name="DrugBooking">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sender_id" Type="String" Nullable="false" />
-          <Property Name="receiver_id" Type="String" Nullable="false" />
-          <Property Name="datetime" Type="String" Nullable="false" />
-          <Property Name="logistic_id" Type="String" Nullable="false" />
+          <Property Name="sender_id" Type="Int32" Nullable="false" />
+          <Property Name="receiver_id" Type="Int32" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" />
           <Property Name="delivery_status" Type="String" Nullable="false" />
           <Property Name="transaction_status" Type="String" Nullable="false" />
-          <Property Name="quantity" Type="String" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Email">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sender_id" Type="String" Nullable="false" />
-          <Property Name="receiver_id" Type="String" Nullable="false" />
-          <Property Name="dateTime" Type="String" Nullable="false" />
-          <Property Name="body" Type="String" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Logistic" Relationship="FIT5032_MediStock.LogisticBooking" FromRole="Booking" ToRole="Logistic" />
+          <Property Name="logistic_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doctor" Relationship="FIT5032_MediStock.DoctorDrugBooking" FromRole="DrugBooking" ToRole="Doctor" />
+          <NavigationProperty Name="Pharmacist" Relationship="FIT5032_MediStock.PharmacistDrugBooking" FromRole="DrugBooking" ToRole="Pharmacist" />
+          <NavigationProperty Name="DrugList" Relationship="FIT5032_MediStock.DrugListDrugBooking" FromRole="DrugBooking" ToRole="DrugList" />
+          <Property Name="DrugList_owner_id" Type="Int32" Nullable="false" />
+          <Property Name="DrugList_drug_Id" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DrugList">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="owner_id" />
+            <PropertyRef Name="drug_Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="available_stock" Type="String" Nullable="false" />
-          <Property Name="owner_id" Type="String" Nullable="false" />
           <NavigationProperty Name="Drug" Relationship="FIT5032_MediStock.DrugDrugList" FromRole="DrugList" ToRole="Drug" />
-          <Property Name="DrugId" Type="Int32" Nullable="false" />
+          <Property Name="drug_Id" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pharmacist" Relationship="FIT5032_MediStock.PharmacistDrugList" FromRole="DrugList" ToRole="Pharmacist" />
           <NavigationProperty Name="Doctor" Relationship="FIT5032_MediStock.DoctorDrugList" FromRole="DrugList" ToRole="Doctor" />
+          <Property Name="owner_id" Type="Int32" Nullable="false" />
+          <Property Name="available_stock" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DrugBookings" Relationship="FIT5032_MediStock.DrugListDrugBooking" FromRole="DrugList" ToRole="DrugBooking" />
         </EntityType>
         <EntityType Name="EquipmentList">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="equipment_id" />
+            <PropertyRef Name="owner_id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="available_stock" Type="String" Nullable="false" />
-          <Property Name="owner_id" Type="String" Nullable="false" />
           <NavigationProperty Name="Equipment" Relationship="FIT5032_MediStock.EquipmentEquipmentList" FromRole="EquipmentList" ToRole="Equipment" />
-          <Property Name="EquipmentId" Type="Int32" Nullable="false" />
+          <Property Name="equipment_id" Type="Int32" Nullable="false" />
+          <Property Name="available_stock" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Doctor" Relationship="FIT5032_MediStock.DoctorEquipmentList" FromRole="EquipmentList" ToRole="Doctor" />
+          <Property Name="owner_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EquipmentBookings" Relationship="FIT5032_MediStock.EquipmentListEquipmentBooking" FromRole="EquipmentList" ToRole="EquipmentBooking" />
         </EntityType>
         <Association Name="DrugDrugList">
           <End Type="FIT5032_MediStock.Drug" Role="Drug" Multiplicity="1" />
@@ -182,7 +222,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="DrugList">
-              <PropertyRef Name="DrugId" />
+              <PropertyRef Name="drug_Id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -194,33 +234,147 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="EquipmentList">
-              <PropertyRef Name="EquipmentId" />
+              <PropertyRef Name="equipment_id" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="PharmacistDrugList">
-          <End Type="FIT5032_MediStock.Pharmacist" Role="Pharmacist" Multiplicity="1" />
-          <End Type="FIT5032_MediStock.DrugList" Role="DrugList" Multiplicity="*" />
-        </Association>
-        <Association Name="DoctorEquipmentList">
-          <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
-          <End Type="FIT5032_MediStock.EquipmentList" Role="EquipmentList" Multiplicity="*" />
-        </Association>
-        <Association Name="DoctorDrugList">
-          <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
-          <End Type="FIT5032_MediStock.DrugList" Role="DrugList" Multiplicity="*" />
-        </Association>
         <Association Name="AdminDoctor">
-          <End Type="FIT5032_MediStock.Admin" Role="Admin" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.Admin" Role="Admin" Multiplicity="*" />
           <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
         </Association>
         <Association Name="PharmacistAdmin">
           <End Type="FIT5032_MediStock.Pharmacist" Role="Pharmacist" Multiplicity="*" />
           <End Type="FIT5032_MediStock.Admin" Role="Admin" Multiplicity="1" />
         </Association>
+        <Association Name="LogisticBooking">
+          <End Type="FIT5032_MediStock.Logistic" Role="Logistic" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.DrugBooking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logistic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="logistic_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PharmacistDrugList">
+          <End Type="FIT5032_MediStock.Pharmacist" Multiplicity="1" Role="Pharmacist" />
+          <End Type="FIT5032_MediStock.DrugList" Multiplicity="*" Role="DrugList" />
+          <ReferentialConstraint>
+            <Principal Role="Pharmacist">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DrugList">
+              <PropertyRef Name="PharmacistId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DoctorDrugList">
+          <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.DrugList" Role="DrugList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DrugList">
+              <PropertyRef Name="DoctorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="AdminLogistic">
           <End Type="FIT5032_MediStock.Admin" Role="Admin" Multiplicity="1" />
           <End Type="FIT5032_MediStock.Logistic" Role="Logistic" Multiplicity="*" />
+        </Association>
+        <EntityType Name="EquipmentBooking">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="receiver_id" Type="Int32" Nullable="false" />
+          <Property Name="datetime" Type="DateTime" Nullable="false" />
+          <Property Name="delivery_status" Type="String" Nullable="false" />
+          <Property Name="transaction_status" Type="String" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Doctor" Relationship="FIT5032_MediStock.EquipmentBookingDoctor" FromRole="EquipmentBooking" ToRole="Doctor" />
+          <Property Name="sender_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Logistic" Relationship="FIT5032_MediStock.LogisticEquipmentBooking" FromRole="EquipmentBooking" ToRole="Logistic" />
+          <Property Name="logistic_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="EquipmentList" Relationship="FIT5032_MediStock.EquipmentListEquipmentBooking" FromRole="EquipmentBooking" ToRole="EquipmentList" />
+          <Property Name="EquipmentList_equipment_id" Type="Int32" Nullable="false" />
+          <Property Name="EquipmentList_owner_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="EquipmentBookingDoctor">
+          <End Type="FIT5032_MediStock.EquipmentBooking" Role="EquipmentBooking" Multiplicity="*" />
+          <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EquipmentBooking">
+              <PropertyRef Name="sender_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="LogisticEquipmentBooking">
+          <End Type="FIT5032_MediStock.Logistic" Role="Logistic" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.EquipmentBooking" Role="EquipmentBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Logistic">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EquipmentBooking">
+              <PropertyRef Name="logistic_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DoctorDrugBooking">
+          <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.DrugBooking" Role="DrugBooking" Multiplicity="*" />
+        </Association>
+        <Association Name="PharmacistDrugBooking">
+          <End Type="FIT5032_MediStock.Pharmacist" Role="Pharmacist" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.DrugBooking" Role="DrugBooking" Multiplicity="*" />
+        </Association>
+        <Association Name="DoctorEquipmentList">
+          <End Type="FIT5032_MediStock.Doctor" Role="Doctor" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.EquipmentList" Role="EquipmentList" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctor">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EquipmentList">
+              <PropertyRef Name="owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DrugListDrugBooking">
+          <End Type="FIT5032_MediStock.DrugList" Role="DrugList" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.DrugBooking" Role="DrugBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DrugList">
+              <PropertyRef Name="owner_id" />
+              <PropertyRef Name="drug_Id" />
+            </Principal>
+            <Dependent Role="DrugBooking">
+              <PropertyRef Name="DrugList_owner_id" />
+              <PropertyRef Name="DrugList_drug_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EquipmentListEquipmentBooking">
+          <End Type="FIT5032_MediStock.EquipmentList" Role="EquipmentList" Multiplicity="1" />
+          <End Type="FIT5032_MediStock.EquipmentBooking" Role="EquipmentBooking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EquipmentList">
+              <PropertyRef Name="equipment_id" />
+              <PropertyRef Name="owner_id" />
+            </Principal>
+            <Dependent Role="EquipmentBooking">
+              <PropertyRef Name="EquipmentList_equipment_id" />
+              <PropertyRef Name="EquipmentList_owner_id" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
