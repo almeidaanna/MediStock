@@ -22,7 +22,7 @@
     @ViewBag.FacilityName
     @ViewBag.Location;
 
-<div class="form-horizontal">
+    <div class="form-horizontal">
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -114,7 +114,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "../Home/Index")
 </div>
 
 @section Scripts {
