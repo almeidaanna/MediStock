@@ -24,12 +24,12 @@ namespace Assignment2.Controllers
         // GET: Registration/Create
         public ActionResult Create()
         {
-            return RedirectToAction("HomePage");
+            return View();
         }
 
         // POST: Registration/Create
         [HttpPost]
-        public ActionResult Create(FormOneViewModel model)
+        public ActionResult Create(RegistrationViewModel model)
         {
             try
             {
@@ -54,13 +54,13 @@ namespace Assignment2.Controllers
                 ViewBag.MedicalRegistration = MedicalRegistration;
                 ViewBag.FacilityName = FacilityName;
                 ViewBag.Location = Location;
-                return View();
-                //return RedirectToAction("HomePage", "HomeController");
+                return RedirectToAction("/Home/HomePage","HomePage");
+                //return RedirectToAction("/Home/HomePage");
             }
             catch
             {
-                return View();
-                //return RedirectToAction("HomePage", "HomeController");
+                return RedirectToAction("/Home/HomePage","HomePage");
+                //return RedirectToAction("/Home/HomePage");
             }
         }
 
