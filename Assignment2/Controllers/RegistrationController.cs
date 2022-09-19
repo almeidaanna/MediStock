@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static Assignment2.Models.RegistrationViewModel;
 
 namespace Assignment2.Controllers
 {
@@ -40,7 +41,7 @@ namespace Assignment2.Controllers
                 String Phone = model.Phone;
                 String Password = model.Password;
                 String ConfirmPassword = model.ConfirmPassword;
-                String Role = model.Role;
+                RoleList Role = model.Role;
                 String MedicalRegistration = model.MedicalRegistration;
                 String FacilityName = model.FacilityName;
                 String Location = model.Location;

@@ -41,7 +41,9 @@ namespace Assignment2.Models
 
         [Required]
         [Display(Name = "Role")]
-        public string Role { get; set; }
+        public RoleList Role { get; set; }
+
+       
 
         [Display(Name = "Medical Registration")]
         public string MedicalRegistration { get; set; }
@@ -52,5 +54,12 @@ namespace Assignment2.Models
         
         [Display(Name = "Facility Address")]
         public string Location { get; set; }
+    }
+    public enum RoleList
+    {
+        Admin,
+        Doctor,
+        Pharmacist,
+        Logistics
     }
 }
