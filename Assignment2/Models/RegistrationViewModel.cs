@@ -59,7 +59,7 @@ namespace Assignment2.Models
 
         //protected void RoleList_Change(object sender, EventArgs e)
         //{
-        //    if (Role.Equals( "Doctor") || Role.Equals("Pharmacist"))
+        //    if (Role.Equals("Doctor") || Role.Equals("Pharmacist"))
         //    {
         //        MedicalRegistration.Visible = true;
         //        FacilityName.Visible = true;
@@ -71,7 +71,7 @@ namespace Assignment2.Models
         //        MedicalRegistration.Visible = false;
         //        FacilityName.Visible = false;
         //        Location.Visible = false;
-        //    }
+        //   }
         //}
     }
     public enum RoleList
