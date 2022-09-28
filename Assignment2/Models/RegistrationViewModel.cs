@@ -54,6 +54,25 @@ namespace Assignment2.Models
         
         [Display(Name = "Facility Address")]
         public string Location { get; set; }
+
+
+
+        //protected void RoleList_Change(object sender, EventArgs e)
+        //{
+        //    if (Role.Equals( "Doctor") || Role.Equals("Pharmacist"))
+        //    {
+        //        MedicalRegistration.Visible = true;
+        //        FacilityName.Visible = true;
+        //        Location.Visible = true;
+
+        //    }
+        //    else
+        //    {
+        //        MedicalRegistration.Visible = false;
+        //        FacilityName.Visible = false;
+        //        Location.Visible = false;
+        //    }
+        //}
     }
     public enum RoleList
     {
@@ -62,4 +81,5 @@ namespace Assignment2.Models
         Pharmacist,
         Logistics
     }
+    
 }
