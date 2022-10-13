@@ -4,8 +4,35 @@ h2{
     font-family:'Ariel Narrow';
     font-weight:bold;
     text-align:center;
-    color:#2b0e60
+    color:#2b0e60;
 }
 p {
-    color: #2b0e60
+    color: #2b0e60;
+}
+h3 {
+    font-family: 'Bahnschrift Light SemiCondensed';
+    font: italic;
+    color: #2b0e60;
+}
+.icons
+{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(4,5vw);
+    grid-gap:15px;
+}
+.center-block
+{
+    display:block;
+    margin-right:auto;
+    margin-left:auto;
+}
+
+.div-grid {
+    display: inline-block;
+}
+
+.div-grid label {
+    display: block;
+    text-align:center;
 }

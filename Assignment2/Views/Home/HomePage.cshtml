@@ -3,19 +3,32 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<div>
-    <div class="jumbotron row align-items-center" style="background-color:#aca3d2">
-        <input type="text" name="Search" placeholder="I am looking for..." class="">
-        <input type="submit" class="btn main-btn rounded-pill w-100 h-100" name="search_btn" value="Search" />
+
+<div class="center">
+    <div style="padding-top: 30px">
+        <input type="text" name="Search" placeholder="I am looking for..." class="center-block" />
+        <input type="submit" class="btn main-btn rounded-pill center-block" name="search_btn" value="Search" />
     </div>
-    <div class="col-lg-20 text-center">
-        <div class="col-md-4">
-            <span>Drugs Section</span>
-            <input type="image" name="Drugs Section" src="~/icons/drug.png" alt="text">
-        </div>
-        <div class="col-md-4">
-            <span>Equipment Section</span>
-            <input type="image" name="Equipment Section" src="~/icons/equipment.png" alt="text">
-        </div>
+</div>
+
+<div class="div-grid">
+    <div>
+        <label>Book Drugs</label>
+        <input type="image" name="Drugs Section" src="~/icons/drug.png" alt="Submit" width="200" height="200">
+    </div>
+    <div>
+        <label>Add Drugs</label>
+        <input type="image" name="Drugs Section" src="~/icons/drug.png" alt="Submit" width="200" height="200">
+    </div>
+</div>
+
+<div class="div-grid">
+    <div>
+        <label>Book Equipment</label>
+        <input type="image" name="Equipment Section" src="~/icons/equipment.png" alt="Submit" width="200" height="200">
+    </div>
+    <div>
+        <label>Add Equipment</label>
+        <input type="image" name="Equipment Section" src="~/icons/equipment.png" alt="Submit" width="200" height="200">
     </div>
 </div>
