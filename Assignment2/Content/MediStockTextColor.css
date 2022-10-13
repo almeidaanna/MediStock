@@ -14,6 +14,12 @@ h3 {
     font: italic;
     color: #2b0e60;
 }
+.button{
+    background-color:#2b0e60;
+    border:#000000;
+    color:#ffffff;
+    text-align:center;
+}
 .icons
 {
     display:grid;
