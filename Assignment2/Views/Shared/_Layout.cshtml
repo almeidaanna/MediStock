@@ -3,10 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MEDISTOCK</title>
+    <title>@ViewBag.Title - MEDIS+OCK</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+<link href="~/Content/MediStockTextColor.css" rel="stylesheet" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #e4e1ff;">
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MediStock", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("MediS+ock", "Index", "Home", new { area = "" }, new { @class = "navbar-brand", style="color:Black"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -34,7 +34,7 @@
         <hr />
     </div>
     <footer>
-        <p>&copy; @DateTime.Now.Year - MEDISTOCK</p>
+        <p>&copy; @DateTime.Now.Year - MEDIS+OCK</p>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
