@@ -1,14 +1,13 @@
 ﻿@model Assignment2.Models.Drug
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Drug Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2> @Html.DisplayFor(model => model.drug_name)</h2>
 
 <div>
-    <h4>Drug</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -53,7 +52,26 @@
 
     </dl>
 </div>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    if (@ViewBag.Result != null)
+    {
+        <div class="alert alert-info">@ViewBag.Result</div>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Confirm Booking" class="btn btn-default" style="background-color:#3a139c; color:#ffffff" />
+        </div>
+    </div>
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @* @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back", "Index")
 </p>
+

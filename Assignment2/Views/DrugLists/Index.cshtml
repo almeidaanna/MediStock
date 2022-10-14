@@ -30,9 +30,9 @@
             @Html.DisplayFor(modelItem => item.Drug.drug_name)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { drug_id=item.drug_Id, owner_id = item.owner_id}) |
+            @Html.ActionLink("Details", "Details", new { drug_id = item.drug_Id, owner_id = item.owner_id }) |
+            @Html.ActionLink("Delete", "Delete", new { drug_id = item.drug_Id, owner_id = item.owner_id })
         </td>
     </tr>
 }

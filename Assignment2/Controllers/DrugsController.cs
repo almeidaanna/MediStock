@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Assignment2.Models;
+using Assignment2.Utils;
 
 namespace Assignment2.Controllers
 {
@@ -123,5 +124,36 @@ namespace Assignment2.Controllers
             }
             base.Dispose(disposing);
         }
+        //public ActionResult Details()
+        //{
+        //    return View(new SendEmailViewModel());
+        //}
+
+        [HttpPost]
+        public ActionResult Details(SendEmailViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+
+                    EmailSender es = new EmailSender();
+                    es.Send();
+
+                    ViewBag.Result = "A mail has been sent to the logistics team and your registerd email-Id";
+
+                    ModelState.Clear();
+
+                    return View(new SendEmailViewModel());
+                }
+                catch
+                {
+                    return View();
+                }
+            }
+
+            return View();
+        }
+
     }
 }
