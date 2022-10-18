@@ -17,7 +17,8 @@ namespace Assignment2.Controllers
         // GET: Equipments
         public ActionResult Index()
         {
-            return View(db.Equipments.ToList());
+            var equipments = db.Equipments.Include(e => e.Admin);
+            return View(equipments.ToList());
         }
 
         // GET: Equipments/Details/5
@@ -38,6 +39,7 @@ namespace Assignment2.Controllers
         // GET: Equipments/Create
         public ActionResult Create()
         {
+            ViewBag.AdminId = new SelectList(db.Admins, "Id", "first_name");
             return View();
         }
 
@@ -46,7 +48,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,equipment_name,description,warning")] Equipment equipment)
+        public ActionResult Create([Bind(Include = "Id,equipment_name,description,available_stock,AdminId")] Equipment equipment)
         {
             if (ModelState.IsValid)
             {
@@ -55,6 +57,7 @@ namespace Assignment2.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.AdminId = new SelectList(db.Admins, "Id", "first_name", equipment.AdminId);
             return View(equipment);
         }
 
@@ -70,6 +73,7 @@ namespace Assignment2.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.AdminId = new SelectList(db.Admins, "Id", "first_name", equipment.AdminId);
             return View(equipment);
         }
 
@@ -78,7 +82,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,equipment_name,description,warning")] Equipment equipment)
+        public ActionResult Edit([Bind(Include = "Id,equipment_name,description,available_stock,AdminId")] Equipment equipment)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +90,7 @@ namespace Assignment2.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.AdminId = new SelectList(db.Admins, "Id", "first_name", equipment.AdminId);
             return View(equipment);
         }
 

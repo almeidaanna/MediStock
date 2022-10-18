@@ -10,112 +10,116 @@ using Assignment2.Models;
 
 namespace Assignment2.Controllers
 {
-    public class DrugListsController : Controller
+    public class EquipmentRatingsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
 
-        // GET: DrugLists
+        // GET: EquipmentRatings
         public ActionResult Index()
         {
-            var drugLists = db.DrugLists.Include(d => d.Drug);
-            return View(drugLists.ToList());
+            var equipmentRatings = db.EquipmentRatings.Include(e => e.Equipment).Include(e => e.Doctor);
+            return View(equipmentRatings.ToList());
         }
 
-        // GET: DrugLists/Details/5
+        // GET: EquipmentRatings/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DrugList drugList = db.DrugLists.Find(id);
-            if (drugList == null)
+            EquipmentRating equipmentRating = db.EquipmentRatings.Find(id);
+            if (equipmentRating == null)
             {
                 return HttpNotFound();
             }
-            return View(drugList);
-        }
+            return View(equipmentRating);
+        } 
 
-        // GET: DrugLists/Create
+        // GET: EquipmentRatings/Create
         public ActionResult Create()
         {
-            ViewBag.drug_Id = new SelectList(db.Drugs, "Id", "drug_name");
+            ViewBag.EquipmentId = new SelectList(db.Equipments, "Id", "equipment_name");
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name");
             return View();
         }
 
-        // POST: DrugLists/Create
+        // POST: EquipmentRatings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "drug_Id,owner_id,available_stock")] DrugList drugList)
+        public ActionResult Create([Bind(Include = "Id,rating,comment,commentDate,EquipmentId,DoctorId")] EquipmentRating equipmentRating)
         {
             if (ModelState.IsValid)
             {
-                db.DrugLists.Add(drugList);
+                db.EquipmentRatings.Add(equipmentRating);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.drug_Id = new SelectList(db.Drugs, "Id", "drug_name", drugList.drug_Id);
-            return View(drugList);
+            ViewBag.EquipmentId = new SelectList(db.Equipments, "Id", "equipment_name", equipmentRating.EquipmentId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name", equipmentRating.DoctorId);
+            return View(equipmentRating);
         }
 
-        // GET: DrugLists/Edit/5
+        // GET: EquipmentRatings/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DrugList drugList = db.DrugLists.Find(id);
-            if (drugList == null)
+            EquipmentRating equipmentRating = db.EquipmentRatings.Find(id);
+            if (equipmentRating == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.drug_Id = new SelectList(db.Drugs, "Id", "drug_name", drugList.drug_Id);
-            return View(drugList);
+            ViewBag.EquipmentId = new SelectList(db.Equipments, "Id", "equipment_name", equipmentRating.EquipmentId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name", equipmentRating.DoctorId);
+            return View(equipmentRating);
         }
 
-        // POST: DrugLists/Edit/5
+        // POST: EquipmentRatings/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "drug_Id,owner_id,available_stock")] DrugList drugList)
+        public ActionResult Edit([Bind(Include = "Id,rating,comment,commentDate,EquipmentId,DoctorId")] EquipmentRating equipmentRating)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(drugList).State = EntityState.Modified;
+                db.Entry(equipmentRating).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.drug_Id = new SelectList(db.Drugs, "Id", "drug_name", drugList.drug_Id);
-            return View(drugList);
+            ViewBag.EquipmentId = new SelectList(db.Equipments, "Id", "equipment_name", equipmentRating.EquipmentId);
+            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name", equipmentRating.DoctorId);
+            return View(equipmentRating);
         }
 
-        // GET: DrugLists/Delete/5
+        // GET: EquipmentRatings/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DrugList drugList = db.DrugLists.Find(id);
-            if (drugList == null)
+            EquipmentRating equipmentRating = db.EquipmentRatings.Find(id);
+            if (equipmentRating == null)
             {
                 return HttpNotFound();
             }
-            return View(drugList);
+            return View(equipmentRating);
         }
 
-        // POST: DrugLists/Delete/5
+        // POST: EquipmentRatings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            DrugList drugList = db.DrugLists.Find(id);
-            db.DrugLists.Remove(drugList);
+            EquipmentRating equipmentRating = db.EquipmentRatings.Find(id);
+            db.EquipmentRatings.Remove(equipmentRating);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

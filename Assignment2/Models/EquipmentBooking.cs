@@ -15,18 +15,15 @@ namespace Assignment2.Models
     public partial class EquipmentBooking
     {
         public int Id { get; set; }
-        public int receiver_id { get; set; }
         public System.DateTime datetime { get; set; }
-        public string delivery_status { get; set; }
-        public string transaction_status { get; set; }
+        public bool status { get; set; }
         public int quantity { get; set; }
-        public int sender_id { get; set; }
-        public int logistic_id { get; set; }
-        public int EquipmentList_equipment_id { get; set; }
-        public int EquipmentList_owner_id { get; set; }
+        public int DoctorId { get; set; }
+        public int LogisticId { get; set; }
+        public int EquipmentId { get; set; }
     
         public virtual Doctor Doctor { get; set; }
         public virtual Logistic Logistic { get; set; }
-        public virtual EquipmentList EquipmentList { get; set; }
+        public virtual Equipment Equipment { get; set; }
     }
 }

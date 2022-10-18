@@ -17,8 +17,7 @@ namespace Assignment2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Admin()
         {
-            this.Pharmacist = new HashSet<Pharmacist>();
-            this.Logistics = new HashSet<Logistic>();
+            this.Equipments = new HashSet<Equipment>();
         }
     
         public int Id { get; set; }
@@ -28,10 +27,7 @@ namespace Assignment2.Models
         public string email_address { get; set; }
         public string password { get; set; }
     
-        public virtual Doctor Doctors { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pharmacist> Pharmacist { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Logistic> Logistics { get; set; }
+        public virtual ICollection<Equipment> Equipments { get; set; }
     }
 }

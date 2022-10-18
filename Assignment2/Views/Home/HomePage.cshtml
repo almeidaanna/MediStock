@@ -4,24 +4,24 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="center">
-    <div class="row" style="padding-top: 30px">
-        <input type="text" name="Search" placeholder="I am looking for..." class="center-block"/>
-        <input type="submit" class="btn main-btn rounded-pill center-block" name="search_btn" value="Search" />
-    </div>
-</div>
+<div >
+    <div class="form-group text-align:center">
+        @using (Html.BeginForm("Index", "Equipments", FormMethod.Get, new { @class = "form-group" }))
+        {
+            <input type="search" placeholder="Search" class="search-field" />
+            <button type="submit" class="search-button">
+                <img src="~/icons/search.png">
+            </button>
+        }
 
-<div class="div-grid" style="padding-top:100px">
-    <div  sstyle="padding-left:50px">
-        <label>Drugs</label>
-        <input type="image" name="Drugs Section" src="~/icons/drug.png" alt="Submit" width="200" height="200" >
     </div>
-</div>
 
-<div class="div-grid">
-    <div style="padding-left: 150px">
-        <label>Equipment</label>
-        <input type="image" name="Equipment Section" src="~/icons/equipment.png" alt="Submit" width="200" height="200">
+
+    <div class="div-grid">
+        <div class=".button">
+            <a href="/Equipments/Index">
+                <input type="image" name="Equipment Section" src="~/icons/equipment.png" alt="Submit" width="200" height="200">
+            </a>
+        </div>
     </div>
-    
 </div>

@@ -25,15 +25,12 @@ namespace Assignment2.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Drug> Drugs { get; set; }
         public virtual DbSet<Equipment> Equipments { get; set; }
-        public virtual DbSet<DrugBooking> DrugBookings { get; set; }
-        public virtual DbSet<Pharmacist> Pharmacists { get; set; }
         public virtual DbSet<Doctor> Doctors { get; set; }
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<Logistic> Logistics { get; set; }
-        public virtual DbSet<DrugList> DrugLists { get; set; }
-        public virtual DbSet<EquipmentList> EquipmentLists { get; set; }
         public virtual DbSet<EquipmentBooking> EquipmentBookings { get; set; }
+        public virtual DbSet<EquipmentRating> EquipmentRatings { get; set; }
+        public virtual DbSet<ReturnImage> ReturnImages { get; set; }
     }
 }

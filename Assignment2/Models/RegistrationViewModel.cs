@@ -59,7 +59,7 @@ namespace Assignment2.Models
 
         //protected void RoleList_Change(object sender, EventArgs e)
         //{
-        //    if (Role.Equals("Doctor") || Role.Equals("Pharmacist"))
+        //    if (Role.Equals("Doctor") || Role.Equals("Admin"))
         //    {
         //        MedicalRegistration.Visible = true;
         //        FacilityName.Visible = true;
@@ -78,7 +78,6 @@ namespace Assignment2.Models
     {
         Admin,
         Doctor,
-        Pharmacist,
         Logistics
     }
     

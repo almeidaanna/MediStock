@@ -12,21 +12,16 @@ namespace Assignment2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EquipmentList
+    public partial class EquipmentRating
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EquipmentList()
-        {
-            this.EquipmentBookings = new HashSet<EquipmentBooking>();
-        }
-    
-        public int equipment_id { get; set; }
-        public int available_stock { get; set; }
-        public int owner_id { get; set; }
+        public int Id { get; set; }
+        public int rating { get; set; }
+        public string comment { get; set; }
+        public System.DateTime commentDate { get; set; }
+        public int EquipmentId { get; set; }
+        public int DoctorId { get; set; }
     
         public virtual Equipment Equipment { get; set; }
         public virtual Doctor Doctor { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipmentBooking> EquipmentBookings { get; set; }
     }
 }

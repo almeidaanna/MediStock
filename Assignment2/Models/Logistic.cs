@@ -17,7 +17,6 @@ namespace Assignment2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Logistic()
         {
-            this.Bookings = new HashSet<DrugBooking>();
             this.EquipmentBookings = new HashSet<EquipmentBooking>();
         }
     
@@ -28,9 +27,6 @@ namespace Assignment2.Models
         public string email_id { get; set; }
         public string password { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugBooking> Bookings { get; set; }
-        public virtual Admin Admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentBooking> EquipmentBookings { get; set; }
     }

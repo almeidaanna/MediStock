@@ -17,15 +17,20 @@ namespace Assignment2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Equipment()
         {
-            this.EquipmentLists = new HashSet<EquipmentList>();
+            this.EquipmentBookings = new HashSet<EquipmentBooking>();
+            this.EquipmentRatings = new HashSet<EquipmentRating>();
         }
     
         public int Id { get; set; }
         public string equipment_name { get; set; }
         public string description { get; set; }
-        public string warning { get; set; }
+        public int available_stock { get; set; }
+        public int AdminId { get; set; }
     
+        public virtual Admin Admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipmentList> EquipmentLists { get; set; }
+        public virtual ICollection<EquipmentBooking> EquipmentBookings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EquipmentRating> EquipmentRatings { get; set; }
     }
 }

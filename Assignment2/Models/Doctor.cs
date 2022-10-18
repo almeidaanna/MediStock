@@ -17,29 +17,23 @@ namespace Assignment2.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Doctor()
         {
-            this.Admin = new HashSet<Admin>();
             this.EquipmentBookings = new HashSet<EquipmentBooking>();
-            this.DrugBookings = new HashSet<DrugBooking>();
-            this.EquipmentLists = new HashSet<EquipmentList>();
+            this.EquipmentRatings = new HashSet<EquipmentRating>();
         }
     
         public int Id { get; set; }
         public string first_name { get; set; }
         public string last_name { get; set; }
         public string phone_no { get; set; }
-        public string location { get; set; }
+        public decimal latitude { get; set; }
         public string hospital_name { get; set; }
         public string email_address { get; set; }
-        public string medical_reg { get; set; }
         public string password { get; set; }
+        public decimal longitude { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Admin> Admin { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentBooking> EquipmentBookings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DrugBooking> DrugBookings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EquipmentList> EquipmentLists { get; set; }
+        public virtual ICollection<EquipmentRating> EquipmentRatings { get; set; }
     }
 }

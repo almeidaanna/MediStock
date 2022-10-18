@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - MEDIS+OCK</title>
     @Styles.Render("~/Content/css")
+    <link href="~/Content/MediStockTextColor.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
-<link href="~/Content/MediStockTextColor.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #e4e1ff;">
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color: #aca3d2;">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" title="more options">
@@ -21,20 +22,20 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    <li>@Html.ActionLink("Home", "HomePage", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Home", "HomePage", "Home", null, new {style = "color:#280f55" })</li>
+                    <li>@Html.ActionLink("About", "About", "Home", null, new { style = "color:#280f55" })</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { style = "color:#280f55" })</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container body-content jumbotron">
         @RenderBody()
         <hr />
     </div>
     <footer>
-        <p>&copy; @DateTime.Now.Year - MEDIS+OCK</p>
+        <p colour:>&copy; @DateTime.Now.Year - MEDIS+OCK</p>
     </footer>
 
     @Scripts.Render("~/bundles/jquery")
