@@ -12,14 +12,6 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.receiver_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.receiver_id)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.datetime)
         </dt>
 
@@ -28,19 +20,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.delivery_status)
+            @Html.DisplayNameFor(model => model.status)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.delivery_status)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.transaction_status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.transaction_status)
+            @Html.DisplayFor(model => model.status)
         </dd>
 
         <dt>
@@ -52,38 +36,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.sender_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.sender_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.logistic_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.logistic_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EquipmentList_equipment_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EquipmentList_equipment_id)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EquipmentList_owner_id)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EquipmentList_owner_id)
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.Doctor.first_name)
         </dt>
 
@@ -91,9 +43,41 @@
             @Html.DisplayFor(model => model.Doctor.first_name)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Logistic.first_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Logistic.first_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Equipment.equipment_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Equipment.equipment_name)
+        </dd>
+
     </dl>
 </div>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+
+    if (@ViewBag.Result != null)
+    {
+        <div class="alert alert-info">@ViewBag.Result</div>
+    }
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Confirm Booking" class="btn btn-default" style="background-color:#3a139c; color:#ffffff" />
+        </div>
+    </div>
+}
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
+    @* @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back", "Index")
 </p>

@@ -13,34 +13,22 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.receiver_id)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.datetime)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.delivery_status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.transaction_status)
+            @Html.DisplayNameFor(model => model.status)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.quantity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sender_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.logistic_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EquipmentList_equipment_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EquipmentList_owner_id)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Doctor.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Logistic.first_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Equipment.equipment_name)
         </th>
         <th></th>
     </tr>
@@ -48,34 +36,22 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.receiver_id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.datetime)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.delivery_status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.transaction_status)
+            @Html.DisplayFor(modelItem => item.status)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.quantity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.sender_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.logistic_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EquipmentList_equipment_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EquipmentList_owner_id)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.Doctor.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Logistic.first_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Equipment.equipment_name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
