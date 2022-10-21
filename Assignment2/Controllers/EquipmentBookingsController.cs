@@ -38,12 +38,14 @@ namespace Assignment2.Controllers
         }
 
         // GET: EquipmentBookings/Create
-        public ActionResult Create()
+        public ActionResult Create(String date)
         {
-            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name");
-            ViewBag.LogisticId = new SelectList(db.Logistics, "Id", "first_name");
-            ViewBag.EquipmentId = new SelectList(db.Equipments, "Id", "equipment_name");
-            return View();
+            if (null == date)
+                return RedirectToAction("Index");
+            EquipmentBooking b = new EquipmentBooking();
+            DateTime convertDate = DateTime.Parse(date);
+            b.datetime = convertDate;
+            return View(b);
         }
 
         // POST: EquipmentBookings/Create
@@ -53,18 +55,34 @@ namespace Assignment2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,datetime,status,quantity,DoctorId,LogisticId,EquipmentId")] EquipmentBooking equipmentBooking)
         {
-            if (ModelState.IsValid)
+            var bookingsList = db.EquipmentBookings.ToList();
+            foreach (EquipmentBooking a in bookingsList)
             {
-                db.EquipmentBookings.Add(equipmentBooking);
-                db.SaveChanges();
+                if (a.datetime == equipmentBooking.datetime)
+                {
+                    TempData["msg"] = "<script>alert('You have aready made a booking');</script>";
+                    return RedirectToAction("Index");
+                }
+            }
+            if (equipmentBooking.datetime >= DateTime.Today)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.EquipmentBookings.Add(equipmentBooking);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+
+            else
+            {
+                TempData["msg"] = "<script>alert('Please Book Equipments after current date');</script>";
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name", equipmentBooking.DoctorId);
-            ViewBag.LogisticId = new SelectList(db.Logistics, "Id", "first_name", equipmentBooking.LogisticId);
-            ViewBag.EquipmentId = new SelectList(db.Equipments, "Id", "equipment_name", equipmentBooking.EquipmentId);
             return View(equipmentBooking);
-        }
+
+    }
 
         // GET: EquipmentBookings/Edit/5
         public ActionResult Edit(int? id)

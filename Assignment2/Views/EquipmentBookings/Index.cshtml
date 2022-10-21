@@ -10,55 +10,104 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.datetime)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.status)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.quantity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Doctor.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Logistic.first_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Equipment.equipment_name)
-        </th>
-        <th></th>
-    </tr>
+<div id="calendar"></div>
+<div style="display:none">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.datetime)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor.first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logistic.first_name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipment.equipment_name)
+            </th>
+            <th></th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.datetime)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quantity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Doctor.first_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Logistic.first_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Equipment.equipment_name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="events">
+
+                <td class="start">
+                    @Html.DisplayFor(modelItem => item.datetime)
+                </td>
+                <td>
+
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Doctor.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logistic.first_name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Equipment.equipment_name)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section Scripts
+{
+    <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Scripts/fullcalendar.min.js"></script>
+    <link href="~/Content/fullcalendar.css" rel="stylesheet" />
+    <script type="text/javascript">$(document).ready(function () {
+            var events = [];
+            $(".EquipmentBookings").each(function () {
+                var title = "Equipment Booking Confirmed";
+                var start = $(".start", this).text().trim();
+                var start1 = moment(start).format();
+                var event = {
+                    "title": title,
+                    "start": start1
+                };
+                events.push(event);
+            });
+
+            $("#calendar").fullCalendar({
+                locale: 'au',
+                events: events,
+                dayClick: function (date, allDay, jsEvent, view) {
+                    var d = new Date(date);
+                    var m = moment(d).format("YYYY-MM-DD");
+                    m = encodeURIComponent(m);
+                    var uri = "/EquipmentBookings/Create?date=" + m;
+                    $(location).attr('href', uri);
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    alert("EquipmentBookings: " + calEvent.title);
+
+                }
+            });
+
+            $('#EquipmentBookings').DataTable({
+                "pagingType": "full_numbers",
+                "order": [[1, "asc"]]
+            });
+});
+    </script>
 }
-
-</table>
