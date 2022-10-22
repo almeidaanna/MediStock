@@ -20,4 +20,5 @@ namespace Assignment2
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
+
 }

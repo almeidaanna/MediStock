@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
+
 [assembly: OwinStartupAttribute(typeof(Assignment2.Startup))]
 namespace Assignment2
 {
@@ -9,6 +10,7 @@ namespace Assignment2
         public void Configuration(IAppBuilder app)
         {
             ConfigureAuth(app);
+
         }
     }
 }
