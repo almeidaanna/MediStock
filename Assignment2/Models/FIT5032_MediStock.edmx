@@ -74,6 +74,16 @@
           <Property Name="email_id" Type="nvarchar(max)" Nullable="false" />
           <Property Name="password" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="Ratings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar(max)" />
+          <Property Name="StarNo" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="ReturnImages">
           <Key>
             <PropertyRef Name="Id" />
@@ -161,6 +171,7 @@
           <EntitySet Name="EquipmentRatings" EntityType="Self.EquipmentRatings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Equipments" EntityType="Self.Equipments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logistics" EntityType="Self.Logistics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReturnImages" EntityType="Self.ReturnImages" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AdminEquipment" Association="Self.FK_AdminEquipment">
             <End Role="Admins" EntitySet="Admins" />
@@ -223,6 +234,7 @@
             <End Role="EquipmentRating" EntitySet="EquipmentRatings" />
           </AssociationSet>
           <EntitySet Name="ReturnImages" EntityType="FIT5032_MediStock.ReturnImage" />
+          <EntitySet Name="Ratings" EntityType="FIT5032_MediStock.Rating" />
         </EntityContainer>
         <EntityType Name="Doctor">
           <Key>
@@ -385,6 +397,16 @@
           <Property Name="Path" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StarNo" Type="Int32" Nullable="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -471,6 +493,17 @@
               <MappingFragment StoreEntitySet="ReturnImages">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Path" ColumnName="Path" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="FIT5032_MediStock.Rating">
+              <MappingFragment StoreEntitySet="Ratings">
+                <ScalarProperty Name="StarNo" ColumnName="StarNo" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

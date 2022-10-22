@@ -32,5 +32,6 @@ namespace Assignment2.Models
         public virtual DbSet<EquipmentBooking> EquipmentBookings { get; set; }
         public virtual DbSet<EquipmentRating> EquipmentRatings { get; set; }
         public virtual DbSet<ReturnImage> ReturnImages { get; set; }
+        public virtual DbSet<Rating> Ratings { get; set; }
     }
 }

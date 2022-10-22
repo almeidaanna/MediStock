@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Assignment2.Models;
 using Assignment2.Utils;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Assignment2.Controllers
 {
@@ -55,6 +57,12 @@ namespace Assignment2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,datetime,status,quantity,DoctorId,LogisticId,EquipmentId")] EquipmentBooking equipmentBooking)
         {
+            var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            var userId = User.Identity.GetUserId();
+            IEnumerable<String> roleId = userManager.FindById(userId).Roles.Select(r => r.RoleId);
+
+            //equipmentBooking.DoctorId = Convert.ToInt32(roleId.ElementAt(0));
+
             var bookingsList = db.EquipmentBookings.ToList();
             foreach (EquipmentBooking a in bookingsList)
             {
@@ -66,6 +74,7 @@ namespace Assignment2.Controllers
             }
             if (equipmentBooking.datetime >= DateTime.Today)
             {
+                
                 if (ModelState.IsValid)
                 {
                     db.EquipmentBookings.Add(equipmentBooking);
@@ -179,6 +188,13 @@ namespace Assignment2.Controllers
             }
 
             return View();
+        }
+
+        // GET: EquipmentBookings/ViewBooking
+        public ActionResult ViewBooking()
+        {
+            var equipmentBooking = db.EquipmentBookings.Include(e => e.Equipment).Include(e => e.Doctor);
+            return View(equipmentBooking.ToList());
         }
     }
 }

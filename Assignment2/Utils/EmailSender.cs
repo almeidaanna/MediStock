@@ -14,8 +14,8 @@ namespace Assignment2.Utils
         public void Send()
         {
             String toEmail = "drdavidlor@gmail.com";
-            String item = "Drug";
-            String subject = item + " Booking Confirmed!";
+            //String item = "Equipment";
+            String subject = "Equipment Booking Confirmed!";
             String toName = " Dr.Lorraine";
             String contents = "Hi" + toName + ",<br><br>Your booking has been confirmed and has been dispatched.<br><br> It will be delivered to you shortly.<br><br>Thanks and regards,<br>Medistock Team";
             var client = new SendGridClient(API_KEY);
