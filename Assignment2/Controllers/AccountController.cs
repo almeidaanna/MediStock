@@ -17,6 +17,7 @@ namespace Assignment2.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
 
         public AccountController()
         {
@@ -152,6 +153,16 @@ namespace Assignment2.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+
+                //Doctor doctor = new Doctor();
+                //doctor.email_address = model.Email;
+                //doctor.first_name = model.FirstName;
+                //doctor.last_name = model.LastName;
+                //doctor.phone_no = model.Phone;
+                //doctor.hospital_name = model.FacilityName;
+                //db.Doctors.Add(doctor);
+                //db.SaveChanges();
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
