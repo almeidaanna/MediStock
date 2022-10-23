@@ -16,12 +16,15 @@ namespace Assignment2.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
 
-        [Required(ErrorMessage = "Email can not be empty")]
+        
+        [RegularExpression(@"^[a-zA-Z0-9._%+]+@[a-zA-Z0-9.]+")]
+        [Required(ErrorMessage = "Enter a Valid Email Address")]
         [EmailAddress]
         [Display(Name = "Email ID")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Email can not be empty")]
+        [RegularExpression(@"^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$")]
+        [Required(ErrorMessage = "Enter a Valid Phone Number")]
         [DataType(DataType.PhoneNumber)]
         [StringLength(10)]
         [Display(Name = "Phone Number")]
