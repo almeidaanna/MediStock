@@ -1,13 +1,13 @@
 ﻿@model IEnumerable<Assignment2.Models.Equipment>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Equipments";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add New Equipments", "Create")
 </p>
 <div>
     <table id="equipmentsTable" class="table">
@@ -42,7 +42,7 @@
                         @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                         @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.Id }) |
-                        @Html.ActionLink("Book", "../EquipmentBookings/Create", new { id = item.Id })
+                        @Html.ActionLink("Book", "../EquipmentBookings/Index", new { id = item.Id })
                     </td>
                 </tr>
             }

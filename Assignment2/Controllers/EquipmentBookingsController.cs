@@ -18,8 +18,10 @@ namespace Assignment2.Controllers
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
 
         // GET: EquipmentBookings
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            Equipment equipment = db.Equipments.Find(id);
+            ViewBag.Equipment = equipment;
             var equipmentBookings = db.EquipmentBookings.Include(e => e.Doctor).Include(e => e.Logistic).Include(e => e.Equipment);
             return View(equipmentBookings.ToList());
         }
@@ -50,6 +52,14 @@ namespace Assignment2.Controllers
             return View(b);
         }
 
+        //// GET: EquipmentBookings/Create
+        //public ActionResult Create(int? id)
+        //{
+        //    EquipmentBooking b = new EquipmentBooking();
+        //    b.Equipment.Id = (int)id;
+        //    return View(b);
+        //}
+
         // POST: EquipmentBookings/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,11 +67,13 @@ namespace Assignment2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,datetime,status,quantity,DoctorId,LogisticId,EquipmentId")] EquipmentBooking equipmentBooking)
         {
-            var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            var userId = User.Identity.GetUserId();
-            IEnumerable<String> roleId = userManager.FindById(userId).Roles.Select(r => r.RoleId);
+            //var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            //var userId = User.Identity.GetUserId();
+            //IEnumerable<String> roleId = userManager.FindById(userId).Roles.Select(r => r.RoleId);
 
-            //equipmentBooking.DoctorId = Convert.ToInt32(roleId.ElementAt(0));
+            equipmentBooking.EquipmentId = 5;
+            equipmentBooking.DoctorId = 2;
+            equipmentBooking.LogisticId = 1;
 
             var bookingsList = db.EquipmentBookings.ToList();
             foreach (EquipmentBooking a in bookingsList)
@@ -69,7 +81,7 @@ namespace Assignment2.Controllers
                 if (a.datetime == equipmentBooking.datetime)
                 {
                     TempData["msg"] = "<script>alert('You have aready made a booking');</script>";
-                    return RedirectToAction("Index");
+                    return RedirectToAction("../Equipments/Index");
                 }
             }
             if (equipmentBooking.datetime >= DateTime.Today)
@@ -79,14 +91,13 @@ namespace Assignment2.Controllers
                 {
                     db.EquipmentBookings.Add(equipmentBooking);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details/" + equipmentBooking.Id);
                 }
             }
-
             else
             {
                 TempData["msg"] = "<script>alert('Please Book Equipments after current date');</script>";
-                return RedirectToAction("Index");
+                return RedirectToAction("../Equipments/Index");
             }
 
             return View(equipmentBooking);
