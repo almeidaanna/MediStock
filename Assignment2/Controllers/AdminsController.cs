@@ -10,6 +10,7 @@ using Assignment2.Models;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class AdminsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();

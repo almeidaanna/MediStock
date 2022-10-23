@@ -12,12 +12,12 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class DoctorsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
 
         // GET: Doctors
-        [Authorize]
         public ActionResult Index()
         {
             var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -60,6 +60,7 @@ namespace Assignment2.Controllers
             return View(doctor);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Doctors/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -80,6 +81,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,first_name,last_name,phone_no,latitude,hospital_name,email_address,password,longitude")] Doctor doctor)
         {
             if (ModelState.IsValid)
@@ -91,6 +93,7 @@ namespace Assignment2.Controllers
             return View(doctor);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Doctors/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -109,6 +112,7 @@ namespace Assignment2.Controllers
         // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Doctor doctor = db.Doctors.Find(id);

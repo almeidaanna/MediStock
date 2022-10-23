@@ -10,6 +10,7 @@ using Assignment2.Models;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class EquipmentsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
@@ -36,6 +37,7 @@ namespace Assignment2.Controllers
             return View(equipment);
         }
 
+        [Authorize(Roles = "Admin")]
         // GET: Equipments/Create
         public ActionResult Create()
         {
@@ -48,6 +50,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "Id,equipment_name,description,available_stock,AdminId")] Equipment equipment)
         {
             if (ModelState.IsValid)
@@ -62,6 +65,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: Equipments/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -82,6 +86,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,equipment_name,description,available_stock,AdminId")] Equipment equipment)
         {
             if (ModelState.IsValid)
@@ -95,6 +100,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: Equipments/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -110,6 +116,7 @@ namespace Assignment2.Controllers
         }
 
         // POST: Equipments/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

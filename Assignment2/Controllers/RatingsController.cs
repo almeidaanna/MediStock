@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class RatingsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();

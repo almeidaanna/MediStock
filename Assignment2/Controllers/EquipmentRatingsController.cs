@@ -10,6 +10,7 @@ using Assignment2.Models;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class EquipmentRatingsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
@@ -34,8 +35,10 @@ namespace Assignment2.Controllers
                 return HttpNotFound();
             }
             return View(equipmentRating);
-        } 
+        }
 
+
+        [Authorize(Roles = "Doctor")]
         // GET: EquipmentRatings/Create
         public ActionResult Create()
         {
@@ -49,6 +52,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Doctor")]
         public ActionResult Create([Bind(Include = "Id,rating,comment,commentDate,EquipmentId,DoctorId")] EquipmentRating equipmentRating)
         {
             if (ModelState.IsValid)
@@ -64,6 +68,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: EquipmentRatings/Edit/5
+        [Authorize(Roles = "Doctor")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -85,6 +90,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Doctor")]
         public ActionResult Edit([Bind(Include = "Id,rating,comment,commentDate,EquipmentId,DoctorId")] EquipmentRating equipmentRating)
         {
             if (ModelState.IsValid)
@@ -99,6 +105,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: EquipmentRatings/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -116,6 +123,7 @@ namespace Assignment2.Controllers
         // POST: EquipmentRatings/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             EquipmentRating equipmentRating = db.EquipmentRatings.Find(id);

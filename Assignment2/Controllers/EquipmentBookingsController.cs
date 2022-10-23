@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class EquipmentBookingsController : Controller
     {
         private FIT5032_MediStockContainer db = new FIT5032_MediStockContainer();
@@ -42,6 +43,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: EquipmentBookings/Create
+        [Authorize(Roles = "Doctor")]
         public ActionResult Create(String date)
         {
             if (null == date)
@@ -65,6 +67,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Doctor")]
         public ActionResult Create([Bind(Include = "Id,datetime,status,quantity,DoctorId,LogisticId,EquipmentId")] EquipmentBooking equipmentBooking)
         {
             //var userManager = HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
@@ -101,10 +104,10 @@ namespace Assignment2.Controllers
             }
 
             return View(equipmentBooking);
-
     }
 
         // GET: EquipmentBookings/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -127,6 +130,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,datetime,status,quantity,DoctorId,LogisticId,EquipmentId")] EquipmentBooking equipmentBooking)
         {
             if (ModelState.IsValid)
@@ -142,6 +146,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: EquipmentBookings/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -158,6 +163,7 @@ namespace Assignment2.Controllers
 
         // POST: EquipmentBookings/Delete/5
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {

@@ -11,6 +11,7 @@ using Assignment2.Models;
 
 namespace Assignment2.Controllers
 {
+    [Authorize]
     public class ReturnImagesController : Controller
     {
         private ManageReturnModel db = new ManageReturnModel();
@@ -37,6 +38,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: ReturnImages/Create
+        [Authorize(Roles = "Doctor")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +49,7 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Doctor")]
         public ActionResult Create([Bind(Include = "Id,Name")] ReturnImage image, HttpPostedFileBase
 postedFile)
         {
@@ -69,6 +72,7 @@ postedFile)
         }
 
         // GET: ReturnImages/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -88,6 +92,7 @@ postedFile)
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "Id,Path,Name")] ReturnImage returnImage)
         {
             if (ModelState.IsValid)
@@ -100,6 +105,7 @@ postedFile)
         }
 
         // GET: ReturnImages/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -117,6 +123,7 @@ postedFile)
         // POST: ReturnImages/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             ReturnImage returnImage = db.ReturnImages.Find(id);
