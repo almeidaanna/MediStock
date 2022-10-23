@@ -7,6 +7,14 @@
     @Styles.Render("~/Content/css")
     <link href="~/Content/MediStockTextColor.css" rel="stylesheet" />
     @Scripts.Render("~/bundles/modernizr")
+    @* This is for the mapbox map. *@
+    <script src='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
+    @*This is used for the Geocoding Mapbox API*@
+    <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-glgeocoder.
+min.js'></script>
+    <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-glgeocoder/
+v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
 
 </head>
 <body>
@@ -26,15 +34,31 @@
                     {
                         <li>@Html.ActionLink("Home", "HomePage", "Home", null, new { style = "color:#280f55" })</li>
                     }
-
-                    <li>@Html.ActionLink("About", "About", "Home", null, new { style = "color:#280f55" })</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { style = "color:#280f55" })</li>
+   
                     @if (User.Identity.IsAuthenticated)
                     {
                         if (User.IsInRole("Doctor"))
                         {
                             <li>@Html.ActionLink("View Bookings", "../EquipmentBookings/ViewBooking", null, new { style = "color:#280f55" })</li>
                         }
+
+                        {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="color: #280f55">
+                                Profile
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("About", "About", "Home", null, new { style = "color:#280f55" })</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { style = "color:#280f55" })</li>
+                                <li>@Html.ActionLink("Rate Us", "Create", "Ratings", null, new { style = "color:#280f55" })</li>
+                                <li>@Html.ActionLink("Find us@", "Index", "Locations", null, new { style = "color:#280f55" })</li>
+                            </ul>
+                        </li>
+
+                        }
+
+
                     }
 
                 </ul>

@@ -26,6 +26,14 @@ namespace Assignment2
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+             "~/Scripts/bootstrap.js",
+             "~/Scripts/respond.js"));
+            
+            bundles.Add(new ScriptBundle("~/bundles/mapbox").Include(
+            "~/Scripts/location.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
                         "~/Scripts/lib/jquery.min.js",
                         "~/Scripts/lib/moment.js",

@@ -21,6 +21,7 @@
         <EntityTypeShape EntityType="FIT5032_MediStock.AspNetRole" Width="1.5" PointX="9.875" PointY="3.625" />
         <EntityTypeShape EntityType="FIT5032_MediStock.AspNetUser" Width="1.5" PointX="12.125" PointY="2.625" />
         <AssociationConnector Association="FIT5032_MediStock.AspNetUserRoles" />
+        <EntityTypeShape EntityType="FIT5032_MediStock.Location" Width="1.5" PointX="10.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

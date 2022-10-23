@@ -25,11 +25,11 @@ namespace Assignment2.Models
         public string first_name { get; set; }
         public string last_name { get; set; }
         public string phone_no { get; set; }
-        public decimal latitude { get; set; }
+        public Nullable<decimal> latitude { get; set; }
         public string hospital_name { get; set; }
         public string email_address { get; set; }
         public string password { get; set; }
-        public decimal longitude { get; set; }
+        public Nullable<decimal> longitude { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EquipmentBooking> EquipmentBookings { get; set; }

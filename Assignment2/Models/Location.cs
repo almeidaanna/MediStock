@@ -12,12 +12,12 @@ namespace Assignment2.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Rating
+    public partial class Location
     {
         public int Id { get; set; }
-        public string UserId { get; set; }
         public string Name { get; set; }
-        public string Comments { get; set; }
-        public int StarNo { get; set; }
+        public string Description { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
     }
 }
