@@ -31,9 +31,12 @@
                     <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { style = "color:#280f55" })</li>
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Bookings", "../EquipmentBookings/ViewBooking", null, new { style = "color:#280f55" })</li>
+                        if (User.IsInRole("Doctor"))
+                        {
+                            <li>@Html.ActionLink("View Bookings", "../EquipmentBookings/ViewBooking", null, new { style = "color:#280f55" })</li>
+                        }
                     }
-                    
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
