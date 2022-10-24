@@ -53,6 +53,10 @@ v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
                                 <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { style = "color:#280f55" })</li>
                                 <li>@Html.ActionLink("Rate Us", "Create", "Ratings", null, new { style = "color:#280f55" })</li>
                                 <li>@Html.ActionLink("Find us@", "Index", "Locations", null, new { style = "color:#280f55" })</li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Send Bulk Mails", "SendBulkEmail", "Home", null, new { style = "color: #280f55" })</li>
+                                }
                             </ul>
                         </li>
 

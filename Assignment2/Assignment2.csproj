@@ -398,9 +398,11 @@
     <Compile Include="Models\ReturnImage.cs">
       <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SendBulkEmailsViewModel.cs" />
     <Compile Include="Models\SendEmailViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\BulkEmailSender.cs" />
     <Compile Include="Utils\EmailSender.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -713,6 +715,7 @@
     <Content Include="Views\Locations\Details.cshtml" />
     <Content Include="Views\Locations\Edit.cshtml" />
     <Content Include="Views\Locations\Index.cshtml" />
+    <Content Include="Views\Home\SendBulkEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

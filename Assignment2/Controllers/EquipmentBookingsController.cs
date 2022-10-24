@@ -74,7 +74,7 @@ namespace Assignment2.Controllers
             //var userId = User.Identity.GetUserId();
             //IEnumerable<String> roleId = userManager.FindById(userId).Roles.Select(r => r.RoleId);
 
-            equipmentBooking.EquipmentId = 5;
+            //equipmentBooking.EquipmentId = 5;
             equipmentBooking.DoctorId = 2;
             equipmentBooking.LogisticId = 1;
 
@@ -192,7 +192,7 @@ namespace Assignment2.Controllers
                     EmailSender es = new EmailSender();
                     es.Send();
 
-                    ViewBag.Result = "A mail has been sent to the logistics team and your registerd email-Id";
+                    ViewBag.Result = "A mail has been sent to your registerd email-Id";
 
                     ModelState.Clear();
 
