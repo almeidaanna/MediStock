@@ -26,7 +26,18 @@ v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("MediS+ock", "HomePage", "Home", new { area = "" }, new { @class = "navbar-brand", style="color:Black"})
+                @if (User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Doctor") || User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("MediS+ock", "HomePage", "Home", new { area = "" }, new { @class = "navbar-brand", style = "color:Black" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("MediS+ock", "ViewBooking", "EquipmentBookings", new { area = "" }, new { @class = "navbar-brand", style = "color:Black" })
+                    }
+
+                }
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -37,7 +48,7 @@ v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
    
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if (User.IsInRole("Doctor"))
+                        if (User.IsInRole("Doctor")|| User.IsInRole("Logistic"))
                         {
                             <li>@Html.ActionLink("View Bookings", "../EquipmentBookings/ViewBooking", null, new { style = "color:#280f55" })</li>
                         }

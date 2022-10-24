@@ -107,7 +107,7 @@ namespace Assignment2.Controllers
     }
 
         // GET: EquipmentBookings/Edit/5
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Logistic")] 
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -130,14 +130,14 @@ namespace Assignment2.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,Logistic")]
         public ActionResult Edit([Bind(Include = "Id,datetime,status,quantity,DoctorId,LogisticId,EquipmentId")] EquipmentBooking equipmentBooking)
         {
             if (ModelState.IsValid)
             {
                 db.Entry(equipmentBooking).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ViewBooking");
             }
             ViewBag.DoctorId = new SelectList(db.Doctors, "Id", "first_name", equipmentBooking.DoctorId);
             ViewBag.LogisticId = new SelectList(db.Logistics, "Id", "first_name", equipmentBooking.LogisticId);
@@ -209,6 +209,7 @@ namespace Assignment2.Controllers
         }
 
         // GET: EquipmentBookings/ViewBooking
+        [Authorize(Roles = "Doctor,Logistic")]
         public ActionResult ViewBooking()
         {
             var equipmentBooking = db.EquipmentBookings.Include(e => e.Equipment).Include(e => e.Doctor);
