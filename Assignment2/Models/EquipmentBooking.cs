@@ -21,7 +21,7 @@ namespace Assignment2.Models
         public bool status { get; set; }
         [Required]
         [Display(Name = "Quantity")]
-        [Range(0, 100)]
+        [Range(1, 100)]
         public int quantity { get; set; }
         public int DoctorId { get; set; }
         public int LogisticId { get; set; }

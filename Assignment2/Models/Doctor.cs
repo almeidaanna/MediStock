@@ -11,7 +11,8 @@ namespace Assignment2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Doctor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,6 +23,7 @@ namespace Assignment2.Models
         }
     
         public int Id { get; set; }
+        [Display (Name = "Doctor Name")]
         public string first_name { get; set; }
         public string last_name { get; set; }
         public string phone_no { get; set; }
