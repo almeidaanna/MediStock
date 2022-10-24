@@ -4,14 +4,19 @@
     ViewBag.Title = "Choose Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>@ViewBag.Equipment.equipment_name</h2>
+<h2>Book Equipment</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <div id="calendar"></div>
-<div style="display:none">
-    <table class="table">
+<hr/>
+@if (TempData != null)
+{
+    @Html.Raw(TempData["msg"]);
+}
+<div>
+    <table id="EquipmentBookings" class="table">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.datetime)
@@ -40,7 +45,7 @@
 
         @foreach (var item in Model)
         {
-            <tr class="events">
+            <tr class="bookings">
 
                 <td class="start">
                     @Html.DisplayFor(modelItem => item.datetime)
@@ -80,9 +85,10 @@
     <script src="~/Scripts/moment.min.js"></script>
     <script src="~/Scripts/fullcalendar.min.js"></script>
     <link href="~/Content/fullcalendar.css" rel="stylesheet" />
-    <script type="text/javascript">$(document).ready(function () {
+    <script type="text/javascript">
+        $(document).ready(function () {
             var events = [];
-            $(".EquipmentBookings").each(function () {
+            $(".bookings").each(function () {
                 var title = "Equipment Booking Confirmed";
                 var start = $(".start", this).text().trim();
                 var start1 = moment(start).format();
@@ -105,7 +111,6 @@
                 },
                 eventClick: function (calEvent, jsEvent, view) {
                     alert("EquipmentBookings: " + calEvent.title);
-
                 }
             });
 

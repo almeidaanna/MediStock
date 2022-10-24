@@ -417,6 +417,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\c3.css" />
+    <Content Include="Content\c3.min.css" />
     <Content Include="Content\fullcalendar.css" />
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
@@ -447,6 +449,10 @@
     <Content Include="Models\FIT5032_MediStock.edmx.diagram">
       <DependentUpon>FIT5032_MediStock.edmx</DependentUpon>
     </Content>
+    <Content Include="Scripts\c3.js" />
+    <Content Include="Scripts\c3.min.js" />
+    <Content Include="Scripts\d3\d3.js" />
+    <Content Include="Scripts\d3\d3.min.js" />
     <Content Include="Scripts\fullcalendar.js" />
     <Content Include="Scripts\fullcalendar.min.js" />
     <Content Include="Scripts\fullcalendar\fullcalendar.js" />
@@ -525,6 +531,10 @@
     <Content Include="Scripts\fullcalendar\locale\vi.js" />
     <Content Include="Scripts\fullcalendar\locale\zh-cn.js" />
     <Content Include="Scripts\fullcalendar\locale\zh-tw.js" />
+    <Content Include="Scripts\d3\README.md" />
+    <Content Include="Scripts\d3\LICENSE" />
+    <Content Include="Scripts\d3\CHANGES.md" />
+    <Content Include="Scripts\d3\API.md" />
     <None Include="Scripts\jquery-3.6.0.intellisense.js" />
     <Content Include="Scripts\gcal.js" />
     <Content Include="Scripts\gcal.min.js" />

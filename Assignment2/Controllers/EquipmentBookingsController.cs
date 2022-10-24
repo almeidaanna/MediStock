@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -84,27 +85,43 @@ namespace Assignment2.Controllers
                 if (a.datetime == equipmentBooking.datetime)
                 {
                     TempData["msg"] = "<script>alert('You have aready made a booking');</script>";
-                    return RedirectToAction("../Equipments/Index");
+                    return RedirectToAction("Index");
                 }
             }
             if (equipmentBooking.datetime >= DateTime.Today)
             {
-                
                 if (ModelState.IsValid)
                 {
                     db.EquipmentBookings.Add(equipmentBooking);
-                    db.SaveChanges();
+                    try
+                    { 
+                        db.SaveChanges();
+                    }
+                    catch(DbEntityValidationException e)
+                    {
+                        ThrowEnhancedValidationException(e);
+                    }
                     return RedirectToAction("Details/" + equipmentBooking.Id);
                 }
             }
             else
             {
                 TempData["msg"] = "<script>alert('Please Book Equipments after current date');</script>";
-                return RedirectToAction("../Equipments/Index");
+                return RedirectToAction("Index");
             }
 
             return View(equipmentBooking);
     }
+        protected virtual void ThrowEnhancedValidationException(DbEntityValidationException e)
+        {
+            var errorMessages = e.EntityValidationErrors
+                    .SelectMany(x => x.ValidationErrors)
+                    .Select(x => x.ErrorMessage);
+
+            var fullErrorMessage = string.Join("; ", errorMessages);
+            var exceptionMessage = string.Concat(e.Message, " The validation errors are: ", fullErrorMessage);
+            throw new DbEntityValidationException(exceptionMessage, e.EntityValidationErrors);
+        }
 
         // GET: EquipmentBookings/Edit/5
         [Authorize(Roles = "Admin,Logistic")] 
