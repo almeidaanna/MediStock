@@ -185,12 +185,13 @@ namespace Assignment2.Controllers
         [HttpPost]
         public ActionResult Details(SendEmailViewModel model)
         {
+            string email = User.Identity.GetUserName();
             if (ModelState.IsValid)
             {
                 try
                 {
                     EmailSender es = new EmailSender();
-                    es.Send();
+                    es.Send(email);
 
                     ViewBag.Result = "A mail has been sent to your registerd email-Id";
 

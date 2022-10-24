@@ -354,9 +354,11 @@
     <Compile Include="Models\Admin.cs">
       <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\displayAttribute.cs" />
     <Compile Include="Models\Doctor.cs">
       <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\emailaddressAttribute.cs" />
     <Compile Include="Models\Equipment.cs">
       <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
     </Compile>
@@ -395,6 +397,7 @@
       <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\RegistrationViewModel.cs" />
+    <Compile Include="Models\requiredAttribute.cs" />
     <Compile Include="Models\ReturnImage.cs">
       <DependentUpon>FIT5032_MediStock.tt</DependentUpon>
     </Compile>

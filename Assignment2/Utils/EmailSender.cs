@@ -11,9 +11,9 @@ namespace Assignment2.Utils
     {
         private const String API_KEY = "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";
 
-        public void Send()
+        public void Send(string email)
         {
-            String toEmail = "drdavidlor@gmail.com";
+            String toEmail = email;
             //String item = "Equipment";
             String subject = "Equipment Booking Confirmed!";
             String toName = " Dr.Lorraine";
