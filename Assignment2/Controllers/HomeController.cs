@@ -64,7 +64,7 @@ namespace Assignment2.Controllers
             try
             {
                 int role_id = Convert.ToInt32(roleId.ElementAt(0));
-                if (role_id == 2 || role_id == 3)
+                if (role_id == 2)
                 {
                     var doctors = db.Doctors;
                     foreach (var i in doctors)
@@ -95,7 +95,7 @@ namespace Assignment2.Controllers
                         HttpPostedFileBase pathToFile = model.PathToFile;
                         es.Send(toEmail, subject, contents, pathToFile);
 
-                        ViewBag.Result = "Email has been sent.";
+                        ViewBag.Result = "Email has been sent";
                         ModelState.Clear();
                         return View(new SendBulkEmailsViewModel());
                     }

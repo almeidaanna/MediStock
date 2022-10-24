@@ -1,10 +1,10 @@
 ﻿@model Assignment2.Models.SendBulkEmailsViewModel
 @{
-    ViewBag.Title = "SendBulkEmail";
+    ViewBag.Title = "Send Bulk Email";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Send Bulk Email</h2>
+<h2>Broadcast Mail</h2>
 
 @using (Html.BeginForm("SendBulkEmail", "Home", FormMethod.Post,
     new { enctype = "multipart/form-data" }))
