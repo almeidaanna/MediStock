@@ -51,7 +51,10 @@ v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
                             <ul class="dropdown-menu" role="menu">
                                 <li>@Html.ActionLink("About", "About", "Home", null, new { style = "color:#280f55" })</li>
                                 <li>@Html.ActionLink("Contact", "Contact", "Home", null, new { style = "color:#280f55" })</li>
+                                @if (User.IsInRole("Doctor"))
+                                {
                                 <li>@Html.ActionLink("Rate Us", "Create", "Ratings", null, new { style = "color:#280f55" })</li>
+                                }
                                 <li>@Html.ActionLink("Find us@", "Index", "Locations", null, new { style = "color:#280f55" })</li>
                                 @if (User.IsInRole("Admin"))
                                 {
