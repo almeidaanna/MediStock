@@ -42,6 +42,8 @@ namespace Assignment2.Controllers
         [Authorize]
         public ActionResult HomePage()
         {
+            if (User.IsInRole("Logistic"))
+                return RedirectToAction("../EquipmentBookings/ViewBooking");
             ViewBag.Message = "Medistock Home Page";
             return View();
         }
