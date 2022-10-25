@@ -11,7 +11,8 @@ namespace Assignment2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class Equipment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +23,10 @@ namespace Assignment2.Models
         }
     
         public int Id { get; set; }
+        [Required]
         public string equipment_name { get; set; }
         public string description { get; set; }
+        [Required]
         public int available_stock { get; set; }
         public int AdminId { get; set; }
     

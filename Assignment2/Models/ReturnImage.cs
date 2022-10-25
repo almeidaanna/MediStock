@@ -11,11 +11,14 @@ namespace Assignment2.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class ReturnImage
     {
         public int Id { get; set; }
+        [Required(ErrorMessage = "Please upload an equipment image and code")]
         public string Path { get; set; }
+        [Required(ErrorMessage = "Please enter a name")]
         public string Name { get; set; }
     }
 }
